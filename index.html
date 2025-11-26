@@ -1,16 +1,72 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موقعي الأول</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>تصميم لوحة المهام</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="container">
-        <h1>مرحباً بكِ في موقعك!</h1>
-        <p>هذا مثال بسيط على صفحة HTML مرتبطة بملف CSS.</p>
-        <button>زر تجريبي</button>
-    </div>
+  <main class="app">
+    <header class="app-header">
+      <h1>لوحة التنظيم</h1>
+    </header>
+<section class="cards-row">
+      <!-- Card 1: نسبة الإنجاز -->
+      <article class="card card-progress">
+        <h2 class="card-title">صفحة التحفيز والإحصائيات</h2>
+        <div class="progress-box">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width:80%"></div>
+          </div>
+          <div class="progress-text">80%</div>
+        </div>
+        <p class="muted">ابني طريق أهدافك معنا 🎉</p>
+      </article>
+ <article class="card card-tasks">
+        <h2 class="card-title">صفحة المهام</h2>
+        <ul class="tasks">
+          <li class="task done">
+            <label>واجب رياضيات
+              <span class="date">12 أكتوبر</span>
+            </label>
+          </li>
+          <li class="task">
+            <label>الاستعداد للاختبار
+              <span class="date">14 أكتوبر</span>
+            </label>
+          </li>
+          <li class="task">
+            <label>قراءة فصل 3
+              <span class="date">17 أكتوبر</span>
+            </label>
+          </li>
+        </ul>
+        <button class="add-btn">+</button>
+      </article>
+<article class="card card-schedule">
+        <h2 class="card-title">صفحة الجدول اليومي</h2>
+        <div class="schedule">
+          <div class="hour">
+            <div class="event badge orange">الرياضيات</div>
+          </div>
+          <div class="hour">
+            <div class="event badge green">اللغة العربية</div>
+          </div>
+          <div class="hour">
+            <div class="event badge yellow">العلوم</div>
+          </div>
+          <!-- empty hours -->
+          <div class="hour empty">15:00</div>
+          <div class="hour empty">16:00</div>
+        </div>
+      </article>
+<script>
+    // مثال بسيط: تقدر تعدل النسبة برمجياً
+    // const fill = document.getElementById('progressFill');
+    // fill.style.width = '80%';
+  </script>
 </body>
 </html>
+
