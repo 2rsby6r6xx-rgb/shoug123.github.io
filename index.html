@@ -1,72 +1,214 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>تصميم لوحة المهام</title>
+  <title>لوحة تنظيم مطوّرة</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    body { font-family: 'Cairo', sans-serif; background:#f7f7f7; margin:0; }
+
+    /* المؤقّت */
+    .timer-box {
+      background:#fff3d1;
+      padding:15px;
+      border-radius:10px;
+      text-align:center;
+      margin-top:15px;
+      font-weight:bold;
+      font-size:20px;
+      box-shadow:0 0 10px #ffe9b4;
+    }
+    .timer-controls button {
+      margin:5px;
+      padding:6px 12px;
+      border-radius:8px;
+      border:none;
+      cursor:pointer;
+      background:#ffcf4b;
+      font-weight:600;
+    }
+    /* الرسوم التحفيزية */
+    .motivation {
+      margin-top:12px;
+      text-align:center;
+      font-size:20px;
+      animation: pop 1.2s infinite ease-in-out;
+    }
+    @keyframes pop {
+      0% { transform:scale(1); }
+      50% { transform:scale(1.18); }
+      100% { transform:scale(1); }
+    }
+
+    /* تأثير النجوم */
+    .stars {
+      font-size:22px;
+      text-align:center;
+      animation: twinkle 1.7s infinite;
+      margin-top:5px;
+    }
+    @keyframes twinkle {
+      50% { opacity:0.3; }
+    }
+
+    /* 🎉 تأثير وميض للجدول */
+    .event {
+      animation: flash 2s infinite;
+    }
+    @keyframes flash {
+      0% { opacity:1; }
+      50% { opacity:0.6; }
+      100% { opacity:1; }
+    }
+
+    .app { padding:20px; max-width:1100px; margin:auto;  .cards-row { display:grid; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); gap:20px; }
+    .card { background:white; padding:20px; border-radius:15px; box-shadow: 0 4px 12px #0001; }
+    .card-title { margin-top:0; font-weight:700; }
+    .tasks li { margin:8px 0; }
+  </style>
 </head>
+
 <body>
   <main class="app">
+
     <header class="app-header">
       <h1>لوحة التنظيم</h1>
     </header>
-<section class="cards-row">
-      <!-- Card 1: نسبة الإنجاز -->
+
+    <section class="cards-row">
+
+      <!-- صفحة التحفيز -->
       <article class="card card-progress">
         <h2 class="card-title">صفحة التحفيز والإحصائيات</h2>
         <div class="progress-box">
-          <div class="progress-bar">
-            <div class="progress-fill" id="progressFill" style="width:80%"></div>
+          <div class="progress-bar" style="background:#ddd; width:100%; border-radius:20px;">
+            <div class="progress-fill" id="progressFill" style="width:80%; height:15px; background:#6ad66a; border-radius:20px;"></div>
           </div>
-          <div class="progress-text">80%</div>
+          <div class="progress-text" style="margin-top:5px; font-weight:700;">80%</div>
         </div>
         <p class="muted">ابني طريق أهدافك معنا 🎉</p>
       </article>
+
+      <!-- صفحة المهام -->
  <article class="card card-tasks">
         <h2 class="card-title">صفحة المهام</h2>
+
+        <!-- المؤقت -->
+        <div class="timer-box">
+          ⏳ الوقت المتبقي: <span id="timer">01:00:00</span>
+
+          <div class="timer-controls">
+            <button onclick="startTimer()">▶ تشغيل</button>
+            <button onclick="pauseTimer()">⏸ إيقاف مؤقت</button>
+            <button onclick="resetTimer()">🔄 إعادة</button>
+            <button onclick="chooseTime()">⏱ اختيار وقت</button>
+          </div>
+        </div>
+
+        <!-- الجمل التحفيزية -->
+        <div class="motivation" id="motiv">⭐ استمر، أنت رائع! ⭐</div>
+        <div class="stars">✨✨✨</div>
+
         <ul class="tasks">
-          <li class="task done">
-            <label>واجب رياضيات
-              <span class="date">12 أكتوبر</span>
-            </label>
-          </li>
-          <li class="task">
-            <label>الاستعداد للاختبار
-              <span class="date">14 أكتوبر</span>
-            </label>
-          </li>
-          <li class="task">
-            <label>قراءة فصل 3
-              <span class="date">17 أكتوبر</span>
-            </label>
-          </li>
+          <li class="task done"><label>واجب رياضيات <span class="date">12 أكتوبر</span></label></li>
+          <li class="task"><label>الاستعداد للاختبار <span class="date">14 أكتوبر</span></label></li>
+          <li class="task"><label>قراءة فصل 3 <span class="date">17 أكتوبر</span></label></li>
         </ul>
-        <button class="add-btn">+</button>
-      </article>
-<article class="card card-schedule">
-        <h2 class="card-title">صفحة الجدول اليومي</h2>
+
+        <button class="add-btn" style="padding:10px 15px; font-size:20px;">+</button>
+  </article>
+
+      <!-- صفحة الجدول اليومي -->
+      <article class="card card-schedule">
+        <h2 class="card-title">صفحة الجدول اليومي 🎉</h2>
+
         <div class="schedule">
-          <div class="hour">
-            <div class="event badge orange">الرياضيات</div>
-          </div>
-          <div class="hour">
-            <div class="event badge green">اللغة العربية</div>
-          </div>
-          <div class="hour">
-            <div class="event badge yellow">العلوم</div>
-          </div>
-          <!-- empty hours -->
-          <div class="hour empty">15:00</div>
-          <div class="hour empty">16:00</div>
+          <div class="hour"><div class="event badge orange">الرياضيات 🎉</div></div>
+          <div class="hour"><div class="event badge green">اللغة العربية 🎉</div></div>
+          <div class="hour"><div class="event badge yellow">العلوم 🎉</div></div>
+          <div class="hour empty">15:00 🎉</div>
+          <div class="hour empty">16:00 🎉</div>
         </div>
       </article>
-<script>
-    // مثال بسيط: تقدر تعدل النسبة برمجياً
-    // const fill = document.getElementById('progressFill');
-    // fill.style.width = '80%';
+
+      <!-- المنظم الشخصي -->
+      <article class="card card-planner">
+        <h2 class="card-title">المنظّم الشخصي</h2>
+        <p class="lead">ابدأ يومك بتنظيم صغير يساعدك</p>
+        <button class="primary" style="padding:10px 20px;">ابدأ التنظيم</button>
+      </article>
+
+    </section>
+  </main>
+
+  <!-- 🔥 سكربت المؤقت + التحفيز -->
+  <script>
+    let totalSeconds = 3600;
+    let interval = null;
+
+    function updateDisplay() {
+      let h = String(Math.floo let totalSeconds = 3600;
+    let interval = null;
+
+    function updateDisplay() {
+      let h = String(Math.floor(totalSeconds / 3600)).padStart(2,'0');
+      let m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2,'0');
+      let s = String(totalSeconds % 60).padStart(2,'0');
+      document.getElementById("timer").textContent = ${h}:${m}:${s};
+    }
+
+    function startTimer() {
+      if (interval) return;
+      interval = setInterval(() => {
+        if (totalSeconds > 0) {
+          totalSeconds--;
+          updateDisplay();
+        } else {
+          clearInterval(interval);
+          interval = null;
+          notifyEnd();
+        }
+      }, 1000);
+    }
+
+    function pauseTimer() {
+      clearInterval(interval);
+      interval = null;
+    }
+
+    function resetTimer() {
+      pauseTimer();
+      totalSeconds = 3600;
+      updateDisplay();
+    }
+
+    function chooseTime() {
+      let input = prompt("أدخل الوقت بالدقائق:", "60");
+      if (input && !isNaN(input)) {
+        totalSeconds = Number(input) * 60;
+        updateDisplay();
+      }
+    }
+
+    function notifyEnd() {
+      alert("⏳ انتهى الوقت! أحسنت 👏🔥");
+      let sound = new Audio("data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQAAAAA=");
+      sound.play();
+    }
+
+    /* الجمل التحفيزية */
+    const quotes = [
+      "🔥 أنت أقوى مما تعتقد!",
+      "✨ خطوة صغيرة اليوم = نتيجة كبيرة غداً!",
+      "⭐ استمر… النجاح ينتظرك!",
+      "🚀 طاقتك اليوم تصنع إنجازات الغد!",
+      "🌟 أنت على الطريق الصحيح!"
+    ];
+    setInterval(() => {
+      document.getElementById("motiv").textContent = quotes[Math.floor(Math.random()*quotes.length)];
+    }, 3000);
   </script>
 </body>
 </html>
-
