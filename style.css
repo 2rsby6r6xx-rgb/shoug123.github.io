@@ -7,27 +7,28 @@
   box-sizing: border-box;
   font-family: "Cairo", sans-serif;
 }
+
 body {
   background: #f4f4f8;
   padding: 20px;
   direction: rtl;
 }
-app-header h1 {
+
+.app-header h1 {
   text-align: center;
   margin-bottom: 25px;
   font-size: 32px;
   font-weight: 700;
   color: #333;
 }
--------------------------------*/
+
+/*------------------------------
    تنسيق الصف الرئيسي للبطاقات
 -------------------------------*/
 .cards-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-}
-/*------------------------------
+ -------------------------------*/
    البطاقات العامة
 -------------------------------*/
 .card {
@@ -37,26 +38,31 @@ app-header h1 {
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   transition: .25s ease;
 }
-card:hover {
+
+.card:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 16px rgba(0,0,0,0.12);
 }
+
 .card-title {
   font-size: 20px;
   margin-bottom: 15px;
   color: #333;
   font-weight: 600;
 }
+
 .muted {
   color: #777;
   margin-top: 10px;
 }
-/*------------------------------
+ gap: 20px;
+  -------------------------------*/
    نسبة الإنجاز (Card Progress)
 -------------------------------*/
 .progress-box {
   margin: 10px 0;
 }
+
 .progress-bar {
   width: 100%;
   height: 12px;
@@ -64,6 +70,7 @@ card:hover {
   border-radius: 10px;
   overflow: hidden;
 }
+
 .progress-fill {
   height: 100%;
   background: linear-gradient(90deg, #6c5ce7, #a29bfe);
@@ -71,19 +78,21 @@ card:hover {
   border-radius: 10px;
   transition: width .4s ease;
 }
+
 .progress-text {
   text-align: center;
   margin-top: 8px;
   font-weight: 600;
   color: #444;
 }
-/*------------------------------
+-------------------------------*/
    المهام (Card Tasks)
 -------------------------------*/
 .tasks {
   list-style: none;
   margin-bottom: 20px;
 }
+
 .task {
   background: #f7f7fa;
   padding: 12px;
@@ -94,7 +103,8 @@ card:hover {
   font-size: 15px;
   transition: .25s;
 }
-task.done {
+
+.task.done {
   text-decoration: line-through;
   opacity: 0.6;
 }
@@ -104,7 +114,7 @@ task.done {
   color: #777;
   margin-right: 10px;
 }
-.add-btn {
+add-btn {
   width: 40px;
   height: 40px;
   font-size: 24px;
@@ -115,9 +125,11 @@ task.done {
   cursor: pointer;
   transition: .25s;
 }
-add-btn:hover {
+
+.add-btn:hover {
   background: #5a4ad1;
 }
+
 /*------------------------------
    الجدول اليومي (Card Schedule)
 -------------------------------*/
@@ -126,18 +138,19 @@ add-btn:hover {
   flex-direction: column;
   gap: 10px;
 }
+
 .hour {
   padding: 12px;
   background: #fafafa;
   border-radius: 10px;
   min-height: 45px;
-}
-.hour.empty {
+}.hour.empty {
   text-align: center;
   color: #888;
   font-size: 14px;
   background: #f1f1f1;
 }
+
 .event {
   padding: 6px 12px;
   border-radius: 8px;
@@ -146,9 +159,11 @@ add-btn:hover {
   color: #fff;
   font-weight: 600;
 }
+
 .badge.orange { background: #fd9644; }
 .badge.green  { background: #20bf6b; }
 .badge.yellow { background: #f7b731; }
+
 /*------------------------------
    المنظم الشخصي (Card Planner)
 -------------------------------*/
@@ -156,7 +171,7 @@ add-btn:hover {
   color: #555;
   margin-bottom: 15px;
 }
-.primary {
+primary {
   background: #6c5ce7;
   border: none;
   padding: 12px 18px;
@@ -165,7 +180,76 @@ add-btn:hover {
   font-size: 16px;
   cursor: pointer;
   transition: .25s;
-   }
+}
+
 .primary:hover {
   background: #5a4ad1;
-} 
+}
+
+/* =========================================================
+   ⬇⬇⬇ الإضافات الجديدة (مؤقّت + رسوم + تأثيرات) ⬇⬇⬇
+   =========================================================*/
+
+/* 🔥 صندوق المؤقّت */
+.timer-box {
+  background:#fff3d1;
+  padding:15px;
+  border-radius:10px;
+  text-align:center;
+  margin-top:15px;
+  font-weight:bold;
+  font-size:19px;
+  box-shadow:0 0 10px #ffe9b4;
+}
+
+/* أزرار المؤقّت */
+.timer-controls button {
+  margin:5px; margin:5px;
+  padding:6px 12px;
+  border-radius:8px;
+  border:none;
+  cursor:pointer;
+  background:#ffcf4b;
+  font-weight:600;
+  transition:0.25s;
+}
+
+.timer-controls button:hover {
+  background:#e4b73d;
+}
+
+/* ✨ جمل تحفيزية */
+.motivation {
+  margin-top:12px;
+  text-align:center;
+  font-size:18px;
+  animation: pop 1.2s infinite ease-in-out;
+}
+
+@keyframes pop {
+  0% { transform:scale(1); }
+  50% { transform:scale(1.15); }
+  100% { transform:scale(1); }
+}
+
+/* تأثير النجوم */
+.stars {
+  font-size:22px;
+  text-align:center;
+  animation: twinkle 1.7s infinite;
+  margin-top:5px;
+}
+@keyframes twinkle {
+  50% { opacity:0.3; }
+}
+
+/* 🎉 تأثير وميض لعناصر الجدول */
+.event {
+  animation: flash 2s infinite;
+}
+
+@keyframes flash {
+  0% { opacity:1; }
+  50% { opacity:0.6; }
+  100% { opacity:1; }
+}
